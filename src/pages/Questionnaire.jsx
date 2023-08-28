@@ -84,7 +84,7 @@ export default function Questionnaire() {
   const handleSubmit = async () => {
     const server = {
       dev: "http://127.0.0.1:5000/plans?major=",
-      prod: "http://benoy515.pythonanywhere.com/plans?major="
+      prod: "https://benoy515.pythonanywhere.com/plans?major="
     }
     // console.log(`http://127.0.0.1:5000/plans?major=${selectedMajor.value}&aps=${completedAPs.map((ap) => ap.value+'-'+ap.score).join(",")}`)
     try {
