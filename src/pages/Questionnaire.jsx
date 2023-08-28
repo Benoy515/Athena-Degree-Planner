@@ -57,8 +57,9 @@ export default function Questionnaire() {
   const majorOptions = [
     { value: "CSEcon", label: "Computer Science + Economics" },
     { value: "CS", label: "Computer Science" },
-    { value: "Aerospace Engineering", label: "Aerospace Engineering" },
-    { value: "orchestra", label: "Orchestra" },
+    { value: "CSMath", label: "Computer Science and Mathematics" },
+    { value: "CSStat", label: "Computer Science and Statistics" },
+    { value: "Aero", label: "Aerospace Engineering" },
   ];
 
   
@@ -81,9 +82,13 @@ export default function Questionnaire() {
   };
 
   const handleSubmit = async () => {
-    console.log(`http://127.0.0.1:5000/plans?major=${selectedMajor.value}&aps=${completedAPs.map((ap) => ap.value+'-'+ap.score).join(",")}`)
+    const server = {
+      dev: "http://127.0.0.1:5000/plans?major=",
+      prod: "http://benoy515.pythonanywhere.com/plans?major="
+    }
+    // console.log(`http://127.0.0.1:5000/plans?major=${selectedMajor.value}&aps=${completedAPs.map((ap) => ap.value+'-'+ap.score).join(",")}`)
     try {
-      const {data} = await axios.get(`http://127.0.0.1:5000/plans?major=${selectedMajor.value}&aps=${completedAPs.map((ap) => ap.value+'-'+ap.score).join(",")}`)
+      const {data} = await axios.get(`${server.prod}${selectedMajor.value}&aps=${completedAPs.map((ap) => ap.value+'-'+ap.score).join(",")}`)
         console.log("SUCCESS", data)
         // console.log(response.data.courses)
         setPlan(data.plan)
@@ -104,18 +109,18 @@ export default function Questionnaire() {
 
   return (
     <>
-    {!completed ? <div className="flex justify-center align-middle">
-      <div className="border border-black border-2 text-center w-4/5 py-5 px-5">
-        <h1 className="text-2xl">Questionnaire</h1>
-        <h2>What is your major?</h2>
+    {!completed ? <div className="flex justify-center align-middle grow">
+      <div className="border-black text-center w-4/5 py-5 px-5">
+        <h1 className="text-5xl font-semibold">Questionnaire</h1>
+        <h2 className='text-xl mt-2 mb-4'>What is your major?</h2>
         <Select options={majorOptions} onChange={handleSelect} className=''/>
 
-        <h2 className="text-2xl">AP Exams</h2>
+        <h2 className="text-4xl font-semibold mt-4">AP Exams</h2>
         {/* <Select options={apOptions} isMulti onChange={setSelectedAPs} className='mx-5'/> */}
         <div className="grid grid-cols-5">
           {completedAPs.map((ap, index) => <div className='border border-black h-20 flex flex-col justify-center rounded-xl mx-2' key={index}>
-            <p>{ap.label}</p>
-            <p><strong>Score:</strong> {ap.score}</p>
+            <p className='text-2xl underline'>{ap.label}</p>
+            <p className='text-xl'><strong>Score:</strong> {ap.score}</p>
           </div>)}
         </div>
         {addAP ? <AddAPExam aps={completedAPs} handleAdd={handleAddAP}/> : 

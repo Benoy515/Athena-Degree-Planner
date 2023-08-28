@@ -61,11 +61,12 @@ function App() {
   let darkClass = darkMode ? "dark" : ""
   return (
     <Router>
-      <div className={darkClass}>
+      <div className={"flex flex-col min-h-screen "+darkClass}>
         <Navbar darkMode={darkMode} handleClick={setDarkMode}/>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/account" element={<Questionnaire />} />
+          <Route path="/" element={<Questionnaire />} />
+          {/* <Route path="/" element={<Home />} />
+          <Route path="/account" element={<Questionnaire />} /> */}
         </Routes>
         <Footer />
       </div>

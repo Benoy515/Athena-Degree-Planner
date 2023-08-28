@@ -9,10 +9,10 @@ export default function Semester({ name, courses }) {
   return (
     <Droppable droppableId={name}>
     {provided => (
-    <div className='flex flex-col justify-center items-center px-10 py-5 mb-auto'
+    <div className='flex flex-col h-screen items-center px-10 py-5 mb-auto'
       {...provided.droppableProps}
       ref={provided.innerRef}>
-      <h1 className='text-3xl underline'>
+      <h1 className='text-3xl underlinfe'>
         {name}
       </h1>
       {courses.map((course, index) => <Course 

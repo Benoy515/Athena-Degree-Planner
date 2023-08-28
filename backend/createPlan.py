@@ -83,3 +83,10 @@ def createPlan(taken, majorCourses, electives, courseList):
     plan.append(sem)
   print(credits)
   return plan
+
+
+def JSONifyPlan(p, names, courseList):
+  plan = p.copy()
+  for i, sem in enumerate(plan):
+    plan[i] = {"name": names[i], "courses": [courseList[c].toJSONDict() for c in sem]}
+  return plan

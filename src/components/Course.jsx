@@ -4,8 +4,8 @@ import { usePopper } from 'react-popper'
 import { Draggable } from 'react-beautiful-dnd';
 
 export default function Course({subject, number, name, hours, identifier, description, index}) {
-  let borderColor = "border-cyan-500"
-  let boxColor = "bg-cyan-500"
+  let borderColor = "border-sky-500"
+  let boxColor = "bg-sky-500"
   const title = subject + " " + number
   let [referenceElement, setReferenceElement] = useState()
   let [popperElement, setPopperElement] = useState()
